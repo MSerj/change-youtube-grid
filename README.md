@@ -2,6 +2,8 @@
 
 A single configurable userscript that combines several YouTube layout, navigation, and playback enhancements.
 
+![assets/img.png](assets/img.png)
+
 ## Features
 
 All features are controlled from the userscript menu and can be enabled or disabled independently:
