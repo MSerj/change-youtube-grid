@@ -1,2 +1,10 @@
-# Change YouTube Grid
-Change the number of videos per row on YouTube, after the latest change of displaying only 3 videos.
+# YouTube Tweeks by MSerj
+
+A configurable userscript for YouTube layout and feed enhancements.
+
+Features are controlled from the userscript menu:
+
+- Change the number of videos per row.
+- Hide Shorts.
+- Hide Mixes.
+- Hide watched videos.

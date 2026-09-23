@@ -1,0 +1,14 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 0,
+  "workspaces": {
+    "": {
+      "devDependencies": {
+        "prettier": "^3.3.2",
+      },
+    },
+  },
+  "packages": {
+    "prettier": ["prettier@3.3.2", "", { "bin": "bin/prettier.cjs" }, "sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA=="],
+  }
+}
