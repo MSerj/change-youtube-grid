@@ -7,7 +7,7 @@
     <option name="selectedModelId" value="gpt-5.6-luna" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfc0279f-087d-47db-b16d-38737848d7d2" name="Changes" comment="feat: add Grid &amp; Feed settings">
+    <list default="true" id="dfc0279f-087d-47db-b16d-38737848d7d2" name="Changes" comment="feat: add Redirect channel to /videos &amp; Prevent timestamp scroll">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
@@ -91,7 +91,7 @@
       <workItem from="1746016571931" duration="3000" />
       <workItem from="1746016594732" duration="239000" />
       <workItem from="1790151596307" duration="2229000" />
-      <workItem from="1790154254167" duration="1327000" />
+      <workItem from="1790154254167" duration="1968000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add Grid &amp; Feed settings">
       <option name="closed" value="true" />
@@ -101,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790154940531</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: add Redirect channel to /videos &amp; Prevent timestamp scroll">
+      <option name="closed" value="true" />
+      <created>1790155611237</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1790155611237</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +128,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: add Grid &amp; Feed settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add Grid &amp; Feed settings" />
+    <MESSAGE value="feat: add Redirect channel to /videos &amp; Prevent timestamp scroll" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add Redirect channel to /videos &amp; Prevent timestamp scroll" />
   </component>
 </project>

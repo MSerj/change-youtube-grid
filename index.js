@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name		    YouTube Tweeks by MSerj
+// @name		    YouTube Tweaks by MSerj
 // @icon            https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @version		    2.0.0
 // @description     A configurable collection of YouTube layout and feed enhancements.
@@ -29,10 +29,10 @@
 	const CONFIG = {
 		columns: 'ytd-items-per-row',
 		features: {
-			grid: 'yt-tweeks-grid',
-			shorts: 'yt-tweeks-shorts',
-			mix: 'yt-tweeks-mix',
-			watched: 'yt-tweeks-watched'
+			grid: 'yt-tweaks-grid',
+			shorts: 'yt-tweaks-shorts',
+			mix: 'yt-tweaks-mix',
+			watched: 'yt-tweaks-watched'
 		}
 	}
 
@@ -46,7 +46,6 @@
 			'ytm-reel-shelf-renderer',
 			'ytd-reel-shelf-renderer',
 			'ytm-item-section-renderer:has(.big-shorts-singleton)',
-			'ytd-rich-section-renderer:has(ytd-rich-shelf-renderer)',
 			'ytd-video-renderer:has(a#thumbnail[href*="shorts" i])',
 			'ytd-rich-item-renderer:has(ytd-ad-slot-renderer)'
 		],
@@ -59,7 +58,8 @@
 			'ytd-radio-renderer:has(ytd-playlist-thumbnail):has(span[title^="Mix - "])',
 			'ytd-compact-radio-renderer:has(yt-collections-stack):has(span[title^="Mix - "])'
 		],
-		watched: ['ytd-rich-item-renderer:has(#progress[style="width: 100%;"])', 'ytd-compact-video-renderer:has(#progress[style="width: 100%;"])']
+		watched: ['ytd-rich-item-renderer:has(#progress[style="width: 100%;"])', 'ytd-compact-video-renderer:has(#progress[style="width: 100%;"])'],
+		mostRelevant: ['ytd-rich-section-renderer:has(ytd-rich-shelf-renderer)']
 	}
 
 	const clampColumns = value => Math.min(10, Math.max(1, parseInt(value) || 5))
@@ -70,6 +70,7 @@
 		{ id: 'shorts', title: 'Hide Shorts', defaultValue: true, selectors: selectors.shorts },
 		{ id: 'mix', title: 'Hide Mixes', defaultValue: false, selectors: selectors.mix },
 		{ id: 'watched', title: 'Hide watched videos', defaultValue: false, selectors: selectors.watched },
+		{ id: 'mostRelevant', title: 'Hide Most relevant', defaultValue: true, selectors: selectors.mostRelevant },
 		{ id: 'redirect', title: 'Redirect channel to /videos', defaultValue: true },
 		{ id: 'grid', title: 'Grid adjustment', defaultValue: true }
 	]
@@ -109,10 +110,10 @@
 	const usedOptions = options.map(useOption)
 	const menuEntries = [
 		// { id: 'feed-section', title: '--- Feed filters ---', type: 'section' },
-		...usedOptions.slice(0, 3),
+		...usedOptions.slice(0, 4),
 		// { id: 'grid-section', title: '--- Grid adjustments ---', type: 'section' },
-		usedOptions[3],
 		usedOptions[4],
+		usedOptions[5],
 		{ id: 'grid-columns', title: '🖥️ Set grid columns', type: 'columns' }
 	]
 	const register = entry => {
@@ -153,7 +154,7 @@
 		menuEntries.forEach(unregister)
 		menuEntries.forEach(register)
 		const rules = []
-		if (usedOptions[4].ref.value) {
+		if (usedOptions[5].ref.value) {
 			rules.push(`
 				.style-scope.ytd-two-column-browse-results-renderer {
 					--ytd-rich-grid-items-per-row: ${state.columns} !important;
