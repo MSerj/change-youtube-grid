@@ -1,24 +1,24 @@
 // ==UserScript==
-// @name		    YouTube Tweaks by MSerj
-// @icon            https://www.google.com/s2/favicons?sz=64&domain=youtube.com
+// @name		      YouTube Tweaks by MSerj
+// @icon          https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @version		    2.0.0
-// @description     A configurable collection of YouTube layout and feed enhancements.
-// @match           *://youtube.com/*
-// @match           *://www.youtube.com/*
-// @match           *://m.youtube.com/*
-// @match           *://*.youtube.com/*
-// @exclude         *://studio.youtube.com/*
+// @description   A configurable collection of YouTube layout and feed enhancements.
+// @match         *://youtube.com/*
+// @match         *://www.youtube.com/*
+// @match         *://m.youtube.com/*
+// @match         *://*.youtube.com/*
+// @exclude       *://studio.youtube.com/*
 // @run-at		    document-start
 
-// @copyright     2025, MSerj
+// @copyright     2026, MSerj
 // @license       MIT
 // @namespace     https://greasyfork.org/en/users/1321619-mserj
 
-// @grant               GM_registerMenuCommand
-// @grant               GM_unregisterMenuCommand
-// @grant               GM_getValue
-// @grant               GM_setValue
-// @grant               GM_addStyle
+// @grant         GM_registerMenuCommand
+// @grant         GM_unregisterMenuCommand
+// @grant         GM_getValue
+// @grant         GM_setValue
+// @grant         GM_addStyle
 // ==/UserScript==
 
 /* jshint esversion: 11 */
@@ -46,6 +46,7 @@
 			'ytm-reel-shelf-renderer',
 			'ytd-reel-shelf-renderer',
 			'ytm-item-section-renderer:has(.big-shorts-singleton)',
+			'ytd-rich-section-renderer:has(a[href*="/shorts" i])',
 			'ytd-video-renderer:has(a#thumbnail[href*="shorts" i])',
 			'ytd-rich-item-renderer:has(ytd-ad-slot-renderer)'
 		],
