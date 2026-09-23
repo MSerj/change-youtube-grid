@@ -3,9 +3,12 @@
 // @icon            https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @version		    2.0.0
 // @description     A configurable collection of YouTube layout and feed enhancements.
+// @match           *://youtube.com/*
 // @match           *://www.youtube.com/*
 // @match           *://m.youtube.com/*
-// @run-at		    document-end
+// @match           *://*.youtube.com/*
+// @exclude         *://studio.youtube.com/*
+// @run-at		    document-start
 
 // @copyright     2025, MSerj
 // @license       MIT
@@ -67,10 +70,30 @@
 		{ id: 'shorts', title: 'Hide Shorts', defaultValue: true, selectors: selectors.shorts },
 		{ id: 'mix', title: 'Hide Mixes', defaultValue: false, selectors: selectors.mix },
 		{ id: 'watched', title: 'Hide watched videos', defaultValue: false, selectors: selectors.watched },
+		{ id: 'redirect', title: 'Redirect channel to /videos', defaultValue: true },
 		{ id: 'grid', title: 'Grid adjustment', defaultValue: true }
 	]
 	const style = document.createElement('style')
-	document.head.appendChild(style)
+	;(document.head || document.documentElement).appendChild(style)
+
+	const excludedChannelPaths = ['/videos', '/community', '/live', '/playlists', '/search', '/podcasts', '/shorts', '/streams']
+	let isRedirecting = false
+	let lastCheckedPath = ''
+	const redirectIfNeeded = () => {
+		const currentPath = window.location.pathname
+		if (!GM_getValue('redirect', true) || isRedirecting || currentPath === lastCheckedPath) return
+		lastCheckedPath = currentPath
+		const channelMatch = currentPath.match(/^(\/@[\w.-]+|\/(?:channel|c|user)\/[^/]+)/)
+		if (!channelMatch) return
+		const channelBasePath = channelMatch[0]
+		const isExcluded = excludedChannelPaths.some(suffix => currentPath.startsWith(channelBasePath + suffix))
+		if (isExcluded) return
+		isRedirecting = true
+		window.location.href = `https://www.youtube.com${channelBasePath}/videos`
+	}
+	const redirectObserver = new MutationObserver(redirectIfNeeded)
+	redirectObserver.observe(document, { subtree: true, childList: true })
+	redirectIfNeeded()
 
 	const useOption = option => {
 		const ref = {
@@ -89,6 +112,7 @@
 		...usedOptions.slice(0, 3),
 		// { id: 'grid-section', title: '--- Grid adjustments ---', type: 'section' },
 		usedOptions[3],
+		usedOptions[4],
 		{ id: 'grid-columns', title: '🖥️ Set grid columns', type: 'columns' }
 	]
 	const register = entry => {
@@ -116,6 +140,7 @@
 			`${ref.value ? '✅' : '❌'} ${title}`,
 			() => {
 				ref.value = !ref.value
+				if (id === 'redirect') redirectIfNeeded()
 				setTimeout(update)
 			},
 			{ id, autoClose: false }
@@ -128,7 +153,7 @@
 		menuEntries.forEach(unregister)
 		menuEntries.forEach(register)
 		const rules = []
-		if (usedOptions[3].ref.value) {
+		if (usedOptions[4].ref.value) {
 			rules.push(`
 				.style-scope.ytd-two-column-browse-results-renderer {
 					--ytd-rich-grid-items-per-row: ${state.columns} !important;
